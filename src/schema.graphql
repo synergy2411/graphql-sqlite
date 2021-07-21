@@ -1,0 +1,44 @@
+type Query {
+    users: [User]
+    posts: [Post]
+}
+type Mutation {
+    createUser (data: CreateUserInput ) : User!
+    createPost(data: CreatePostinput ): Post!
+    login(data: LoginInput): AuthPayload
+}
+input LoginInput{
+    email: String!
+    password: String!
+}
+type AuthPayload {
+    token: String!
+    user: User!
+}
+type Post {
+    id: ID!
+    title: String!
+    body: String!
+    published: Boolean!
+    author: User!
+}
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    password: String
+    posts: [Post]
+}
+
+input CreateUserInput {
+    name: String!
+    email:String!
+    password: String!
+}
+
+input CreatePostinput {
+    title: String!
+    body: String!
+    published: Boolean!
+    authorId: ID!
+}
